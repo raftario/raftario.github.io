@@ -1,0 +1,31 @@
+{
+    "name": "raphaeltheriault.com",
+    "version": "1.0.0",
+    "description": "Personal website",
+    "repository": "https://github.com/raftario/raftario.github.io",
+    "homepage": "https://raphaeltheriault.com",
+    "author": "Raphaël Thériault <raphael_theriault@outlook.com>",
+    "license": "MIT",
+    "scripts": {
+        "dev": "vuepress dev",
+        "build": "vuepress build",
+        "lint": "prettier --write **/*.{json,md,yml}"
+    },
+    "dependencies": {
+        "husky": "^3.1.0",
+        "lint-staged": "^9.5.0",
+        "prettier": "^1.19.1",
+        "vuepress": "^1.2.0"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
+    "lint-staged": {
+        "*.{json,md,yml}": [
+            "prettier --write",
+            "git add"
+        ]
+    }
+}
