@@ -10,7 +10,7 @@
     "scripts": {
         "dev": "vuepress dev",
         "build": "vuepress build",
-        "lint": "eslint --fix **/*.{vue,js} && prettier --write **/*.{json,md,yml,html}"
+        "lint": "eslint --fix **/*.{vue,js} && prettier --write **/*.{json,md,yml}"
     },
     "dependencies": {
         "babel-eslint": "^10.0.3",
@@ -33,7 +33,7 @@
             "eslint --fix",
             "git add"
         ],
-        "*.{json,md,yml,html}": [
+        "*.{json,md,yml}": [
             "prettier --write",
             "git add"
         ]
