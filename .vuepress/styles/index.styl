@@ -1,0 +1,94 @@
+$font-body = "Open Sans", sans-serif;
+$font-headings = "Raleway", sans-serif;
+$font-code = "Source Code Pro", monospace;
+$font-size = 125%;
+
+$border = 2px solid $base2;
+
+body {
+    font-family: $font-body;
+    font-size: $font-size;
+    line-height: 1.5;
+    background-color $base3;
+    color $base00;
+}
+
+::selection {
+    background-color: $blue;
+    color: $base3;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: $font-headings;
+    font-weight: normal;
+    color: $base01;
+}
+
+a {
+    color: $blue;
+    text-decoration: none;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%
+}
+
+table,
+th,
+td {
+    border: $border;
+}
+
+th,
+td {
+    padding: .5em 1em;
+}
+
+th {
+    background-color: $base2;
+}
+
+hr {
+    border: none;
+    border-top: $border;
+}
+
+blockquote {
+    margin: 0;
+    padding: 0 1em;
+    border-left: $border;
+}
+
+img {
+    max-width 100%;
+}
+
+code {
+    font-family: $font-code;
+}
+
+:not(pre) > code {
+    background-color: $base2;
+    padding: 0 .25em;
+}
+
+ul,
+ol {
+    padding: 0 1em;
+}
+
+.container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 1em;
+}
+
+@import "prism";

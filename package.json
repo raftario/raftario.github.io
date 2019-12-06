@@ -6,12 +6,18 @@
     "homepage": "https://raphaeltheriault.com",
     "author": "Raphaël Thériault <raphael_theriault@outlook.com>",
     "license": "MIT",
+    "main": "README.md",
     "scripts": {
         "dev": "vuepress dev",
         "build": "vuepress build",
-        "lint": "prettier --write **/*.{json,md,yml}"
+        "lint": "eslint --fix **/*.{vue,js} && prettier --write **/*.{json,md,yml,html}"
     },
     "dependencies": {
+        "babel-eslint": "^10.0.3",
+        "eslint": "^6.7.2",
+        "eslint-config-prettier": "^6.7.0",
+        "eslint-plugin-prettier": "^3.1.1",
+        "eslint-plugin-vue": "^6.0.1",
         "husky": "^3.1.0",
         "lint-staged": "^9.5.0",
         "prettier": "^1.19.1",
@@ -23,7 +29,11 @@
         }
     },
     "lint-staged": {
-        "*.{json,md,yml}": [
+        "*.{vue,js}": [
+            "eslint --fix",
+            "git add"
+        ],
+        "*.{json,md,yml,html}": [
             "prettier --write",
             "git add"
         ]

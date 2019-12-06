@@ -1,0 +1,20 @@
+{
+    "env": {
+        "node": true
+    },
+    "parser": "vue-eslint-parser",
+    "extends": [
+        "eslint:recommended",
+        "plugin:vue/recommended",
+        "plugin:prettier/recommended",
+        "prettier/vue"
+    ],
+    "rules": {
+        "prettier/prettier": 1,
+        "sort-imports": 1,
+        "vue/component-name-in-template-casing": ["error", "PascalCase"]
+    },
+    "parserOptions": {
+        "parser": "babel-eslint"
+    }
+}
