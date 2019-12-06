@@ -3,8 +3,6 @@ $font-headings = "Raleway", sans-serif;
 $font-code = "Source Code Pro", monospace;
 $font-size = 125%;
 
-$border = 2px solid $base2;
-
 body {
     font-family: $font-body;
     font-size: $font-size;
@@ -26,6 +24,16 @@ h5 {
     font-family: $font-headings;
     font-weight: normal;
     color: $base01;
+    margin: 1em 0;
+}
+
+p,
+table,
+blockquote,
+pre,
+:not(li) > ul,
+:not(li) > ol {
+    margin: 1.5em 0;
 }
 
 h1 {
@@ -69,12 +77,8 @@ table {
 
 th,
 td {
-    border: $border;
-}
-
-th,
-td {
     padding: .5em 1em;
+    border: .125em solid $base2;;
 }
 
 th {
@@ -83,13 +87,14 @@ th {
 
 hr {
     border: none;
-    border-top: $border;
+    border-top: .125em solid $base2;
+    margin: 4em 0;
 }
 
 blockquote {
     margin: 0;
     padding: 0 1em;
-    border-left: $border;
+    border-left: .25em solid $base2;;
 }
 
 img {
@@ -114,6 +119,10 @@ ol {
     max-width: 720px;
     margin: 0 auto;
     padding: 0 1em;
+}
+
+.icon.outbound {
+    display: none;
 }
 
 @import "prism";
