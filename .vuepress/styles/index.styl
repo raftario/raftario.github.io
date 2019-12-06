@@ -78,7 +78,7 @@ table {
 th,
 td {
     padding: .5em 1em;
-    border: .125em solid $base2;;
+    border: .125em solid $base2;
 }
 
 th {
@@ -123,6 +123,32 @@ ol {
 
 .icon.outbound {
     display: none;
+}
+
+.header {
+    background-color: $base2;
+    padding: 2em 0;
+    margin-bottom: 4em;
+}
+
+.date {
+    color: $base0;
+}
+
+.heading-link {
+    color: $base01;
+    &:hover {
+        color: $blue;
+    }
+}
+
+.center {
+    display: flex;
+    min-height: 75vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
 }
 
 @import "prism";
