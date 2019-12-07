@@ -20,8 +20,15 @@ module.exports = {
         [
             "meta",
             {
+                name: "theme-color",
+                content: "#002b36",
+            },
+        ],
+        [
+            "meta",
+            {
                 property: "og:site_name",
-                rel: "Raphaël Thériault",
+                content: "Raphaël Thériault",
             },
         ],
     ],
