@@ -17,6 +17,13 @@ module.exports = {
                 rel: "stylesheet",
             },
         ],
+        [
+            "meta",
+            {
+                property: "og:site_name",
+                rel: "Raphaël Thériault",
+            },
+        ],
     ],
     markdown: {
         anchor: {

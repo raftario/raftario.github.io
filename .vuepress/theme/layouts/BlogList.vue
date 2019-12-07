@@ -6,12 +6,12 @@
             </div>
         </div>
         <div class="container">
-            <div v-for="(p, i) in posts" :key="p.frontmatter.date">
-                <p class="date">{{ parseDate(p.frontmatter.date) }}</p>
+            <div v-for="(p, i) in posts" :key="p.title">
+                <p class="date">{{ parseDate(p.frontmatter.published) }}</p>
                 <h3>
                     <a class="heading-link" :href="p.path">{{ p.title }}</a>
                 </h3>
-                <p>{{ p.frontmatter.subtitle }}</p>
+                <p>{{ p.frontmatter.description }}</p>
                 <p><a :href="p.path">View</a></p>
                 <hr v-if="i < posts.length - 1" />
             </div>
@@ -31,8 +31,8 @@ export default {
                 )
                 .sort(
                     (a, b) =>
-                        Date.parse(b.frontmatter.date) -
-                        Date.parse(a.frontmatter.date)
+                        Date.parse(b.frontmatter.published) -
+                        Date.parse(a.frontmatter.published)
                 );
         },
     },

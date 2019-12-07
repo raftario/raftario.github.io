@@ -1,8 +1,20 @@
 ---
 layout: BlogPost
 title: Markdown Test Page
-subtitle: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-date: 2019-12-06
+description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+published: "2019-12-06"
+modified: "2019-12-07"
+meta:
+    - property: og:title
+      content: Markdown Test Page
+    - property: og:description
+      content: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    - property: og:type
+      content: article
+    - property: article:published_time
+      content: "2019-12-06"
+    - property: article:author
+      content: Raphaël Thériault
 ---
 
 <a name="top"></a>

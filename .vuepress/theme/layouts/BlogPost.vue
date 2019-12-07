@@ -7,13 +7,12 @@
                 </p>
                 <h1>{{ this.$page.title }}</h1>
                 <p>
-                    {{ this.$page.frontmatter.subtitle }}
+                    {{ this.$page.frontmatter.description }}
                 </p>
             </div>
         </div>
         <div class="container">
             <Content />
-            <component :is="btt" v-if="btt"></component>
         </div>
     </div>
 </template>
@@ -22,7 +21,15 @@
 export default {
     computed: {
         date: function() {
-            return new Date(this.$page.frontmatter.date).toDateString();
+            let date = new Date(
+                this.$page.frontmatter.published
+            ).toDateString();
+            if (this.$page.frontmatter.modified) {
+                date += ` (Updated ${new Date(
+                    this.$page.frontmatter.modified
+                ).toDateString()})`;
+            }
+            return date;
         },
     },
 };
