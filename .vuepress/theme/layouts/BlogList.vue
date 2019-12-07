@@ -2,7 +2,7 @@
     <div>
         <div class="header">
             <div class="container">
-                <h1>{{ this.$page.title }}</h1>
+                <h1>{{ this.$page.title }} | {{ this.$site.title }}</h1>
             </div>
         </div>
         <div class="container">
@@ -12,6 +12,7 @@
                     <a class="heading-link" :href="p.path">{{ p.title }}</a>
                 </h3>
                 <p>{{ p.frontmatter.subtitle }}</p>
+                <p><a :href="p.path">View</a></p>
                 <hr v-if="i < posts.length - 1" />
             </div>
         </div>

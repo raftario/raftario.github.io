@@ -2,12 +2,12 @@
     <div>
         <div class="header">
             <div class="container">
+                <p class="date">
+                    {{ date }}
+                </p>
                 <h1>{{ this.$page.title }}</h1>
                 <p>
                     {{ this.$page.frontmatter.subtitle }}
-                </p>
-                <p class="date">
-                    {{ date }}
                 </p>
             </div>
         </div>
