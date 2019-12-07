@@ -1,3 +1,4 @@
 !/.vuepress/
 /.vuepress/dist/
 /node_modules/
+/deploy/
