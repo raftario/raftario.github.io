@@ -11,10 +11,12 @@ meta:
       content: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
     - property: og:type
       content: article
-    - property: article:published_time
-      content: "2019-12-06"
     - property: article:author
       content: Raphaël Thériault
+    - property: article:published_time
+      content: "2019-12-06"
+    - property: article:modified_time
+      content: "2019-12-07"
 ---
 
 <a name="top"></a>
