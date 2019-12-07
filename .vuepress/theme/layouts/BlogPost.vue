@@ -25,9 +25,9 @@ export default {
                 this.$page.frontmatter.published
             ).toDateString();
             if (this.$page.frontmatter.modified) {
-                date += ` (Updated ${new Date(
+                date += ` | Updated ${new Date(
                     this.$page.frontmatter.modified
-                ).toDateString()})`;
+                ).toDateString()}`;
             }
             return date;
         },
