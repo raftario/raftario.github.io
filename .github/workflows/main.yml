@@ -21,3 +21,4 @@ jobs:
                   github_token: ${{ secrets.GITHUB_TOKEN }}
                   publish_dir: ./.vuepress/dist
                   publish_branch: master
+                  cname: raftar.io
