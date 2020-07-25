@@ -1,1 +1,3 @@
-Allo
+---
+layout: Home
+---

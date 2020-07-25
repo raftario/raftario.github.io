@@ -2,7 +2,11 @@
     <div>
         <div class="header">
             <div class="container">
-                <h1>{{ this.$page.title }} | {{ this.$site.title }}</h1>
+                <h1>
+                    <a class="heading-link" href="/">{{ this.$site.title }}</a>
+                    <ChevronsRightIcon size="32" />
+                    {{ this.$page.title }}
+                </h1>
             </div>
         </div>
         <div class="container">
@@ -12,7 +16,6 @@
                     <a class="heading-link" :href="p.path">{{ p.title }}</a>
                 </h3>
                 <p>{{ p.frontmatter.description }}</p>
-                <p><a :href="p.path">View</a></p>
                 <hr v-if="i < posts.length - 1" />
             </div>
         </div>
@@ -20,7 +23,10 @@
 </template>
 
 <script>
+import { ChevronsRightIcon } from "vue-feather-icons";
+import moment from "moment";
 export default {
+    components: { ChevronsRightIcon },
     computed: {
         posts: function() {
             return this.$site.pages
@@ -38,7 +44,7 @@ export default {
     },
     methods: {
         parseDate: function(date) {
-            return new Date(date).toDateString();
+            return moment(date).format("YYYY/MM/DD");
         },
     },
 };

@@ -3,6 +3,10 @@
         <div class="header">
             <div class="container">
                 <p class="date">
+                    <a href="/" class="date-link">{{ this.$site.title }}</a>
+                    <ChevronsRightIcon size="16" />
+                    <a href="/blog/" class="date-link">Blog</a>
+                    <ChevronsRightIcon size="16" />
                     {{ date }}
                 </p>
                 <h1>{{ this.$page.title }}</h1>
@@ -18,18 +22,15 @@
 </template>
 
 <script>
+import { ChevronsRightIcon } from "vue-feather-icons";
+import moment from "moment";
 export default {
+    components: { ChevronsRightIcon },
     computed: {
         date: function() {
-            let date = new Date(
-                this.$page.frontmatter.published
-            ).toDateString();
-            if (this.$page.frontmatter.modified) {
-                date += ` | Updated ${new Date(
-                    this.$page.frontmatter.modified
-                ).toDateString()}`;
-            }
-            return date;
+            return moment(this.$page.frontmatter.published).format(
+                "YYYY/MM/DD"
+            );
         },
     },
 };
