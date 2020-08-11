@@ -1,5 +1,6 @@
 ---
 layout: Home
+title: README
 ---
 
 ## Hi, I'm Raphaël.

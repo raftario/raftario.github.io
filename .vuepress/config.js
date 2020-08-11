@@ -34,7 +34,10 @@ module.exports = {
     ],
     markdown: {
         anchor: {
-            permalink: false,
+            permalink: true,
+            permalinkSpace: true,
+            permalinkSymbol: "¶",
+            permalinkBefore: false,
         },
     },
 };
