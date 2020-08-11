@@ -4,10 +4,7 @@
             <div class="center">
                 <h1>Raphaël Thériault</h1>
                 <div>
-                    <a
-                        href="https://github.com/raftario"
-                        target="_blank"
-                        rel="noopener noreferrer"
+                    <a href="https://github.com/raftario"
                         ><GithubIcon size="32"
                     /></a>
                     <a href="#"><GridIcon size="32"/></a>
@@ -73,5 +70,9 @@ export default {
 .details {
     min-height: 60vh;
     padding-top: 2em;
+
+    .header-anchor {
+        display: none !important;
+    }
 }
 </style>
