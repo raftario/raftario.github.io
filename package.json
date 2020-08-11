@@ -19,9 +19,9 @@
         "eslint-plugin-prettier": "^3.1.1",
         "eslint-plugin-vue": "^6.0.1",
         "moment": "^2.27.0",
-        "prettier": "^1.19.1",
-        "vue-feather-icons": "^5.0.0",
-        "vuepress": "^1.2.0"
+        "prettier": "^2.0.5",
+        "vue-feather-icons": "^5.1.0",
+        "vuepress": "^1.5.3"
     },
     "husky": {
         "hooks": {
