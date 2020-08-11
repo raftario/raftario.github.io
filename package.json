@@ -21,7 +21,7 @@
         "moment": "^2.27.0",
         "prettier": "^2.0.5",
         "vue-feather-icons": "^5.1.0",
-        "vuepress": "^1.2.0"
+        "vuepress": "^1.5.3"
     },
     "husky": {
         "hooks": {
