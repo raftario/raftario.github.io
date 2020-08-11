@@ -18,8 +18,8 @@
                 <ChevronsDownIcon size="128" />
             </div>
         </div>
-        <div class="container">
-            <p>Hello, World!</p>
+        <div class="container details">
+            <Content />
         </div>
     </div>
 </template>
@@ -40,6 +40,10 @@ export default {
 .hero {
     background-color: $base03;
     height: 100vh;
+
+    h1 {
+        text-align: center;
+    }
 
     h1,
     h2,
@@ -64,5 +68,10 @@ export default {
         color: $base02;
         text-align: center;
     }
+}
+
+.details {
+    min-height: 60vh;
+    padding-top: 2em;
 }
 </style>
