@@ -40,4 +40,27 @@ module.exports = {
             permalinkBefore: false,
         },
     },
+    plugins: {
+        seo: {
+            siteTitle: (_, $site) => $site.title,
+            title: ($page) => $page.title,
+            description: ($page) =>
+                !!$page.frontmatter.description &&
+                $page.frontmatter.description,
+            author: ($page) =>
+                (!!$page.frontmatter.author && $page.frontmatter.author) ||
+                "Raphaël Thériault",
+            twitterCard: () => "summary",
+            type: ($page) =>
+                $page.path.startsWith("/blog/") &&
+                $page.path.length > "/blog/".length
+                    ? "article"
+                    : "website",
+            url: (_, __, path) => path,
+            image: () => false,
+            publishedAt: ($page) =>
+                !!$page.frontmatter.date && new Date($page.frontmatter.date),
+        },
+        mathjax: {},
+    },
 };

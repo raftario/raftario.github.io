@@ -27,10 +27,8 @@ import moment from "moment";
 export default {
     components: { ChevronsRightIcon },
     computed: {
-        date: function() {
-            return moment(this.$page.frontmatter.published).format(
-                "YYYY/MM/DD"
-            );
+        date: function () {
+            return moment(this.$page.frontmatter.date).format("YYYY/MM/DD");
         },
     },
 };

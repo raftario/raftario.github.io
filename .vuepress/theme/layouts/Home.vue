@@ -7,8 +7,8 @@
                     <a href="https://github.com/raftario"
                         ><GithubIcon size="32"
                     /></a>
-                    <a href="#"><GridIcon size="32"/></a>
-                    <a href="/blog"><FeatherIcon size="32"/></a>
+                    <a href="#"><GridIcon size="32" /></a>
+                    <a href="/blog"><FeatherIcon size="32" /></a>
                 </div>
             </div>
             <div class="chevrons">

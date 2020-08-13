@@ -28,7 +28,7 @@ import moment from "moment";
 export default {
     components: { ChevronsRightIcon },
     computed: {
-        posts: function() {
+        posts: function () {
             return this.$site.pages
                 .filter(
                     (p) =>
@@ -37,13 +37,13 @@ export default {
                 )
                 .sort(
                     (a, b) =>
-                        Date.parse(b.frontmatter.published) -
-                        Date.parse(a.frontmatter.published)
+                        Date.parse(b.frontmatter.date) -
+                        Date.parse(a.frontmatter.date)
                 );
         },
     },
     methods: {
-        parseDate: function(date) {
+        parseDate: function (date) {
             return moment(date).format("YYYY/MM/DD");
         },
     },
