@@ -18,6 +18,7 @@
         <div class="container">
             <Content />
         </div>
+        <div class="padding"></div>
     </div>
 </template>
 
