@@ -12,7 +12,7 @@
         "lint": "eslint --fix **/*.{vue,js} && prettier --write **/*.{json,md,yml}"
     },
     "dependencies": {
-        "moment": "^2.27.0",
+        "moment": "^2.28.0",
         "vue-feather-icons": "^5.1.0"
     },
     "devDependencies": {
