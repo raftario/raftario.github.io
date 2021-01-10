@@ -22,7 +22,7 @@
         "eslint-plugin-prettier": "^3.3.0",
         "eslint-plugin-vue": "^7.4.0",
         "prettier": "^2.2.1",
-        "vuepress": "^1.7.1",
+        "vuepress": "^1.8.0",
         "vuepress-plugin-mathjax": "^1.2.8",
         "vuepress-plugin-seo": "^0.1.4"
     }
