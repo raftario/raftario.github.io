@@ -1,0 +1,22 @@
+@font-face {
+  font-family: "Open Sans";
+  src: local("Open Sans"), url("/fonts/open-sans.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Open Sans";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local("Open Sans"), url("/fonts/open-sans-italic.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: local("Raleway"), url("/fonts/raleway-500.woff2") format("woff2");
+}

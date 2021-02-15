@@ -1,0 +1,14 @@
+import Article, { MDXProps } from "blog/article";
+
+export const meta = {
+  title: "Test",
+  description: "Test description",
+  published: new Date("2021-02-12"),
+};
+
+Test body
+
+export const Test = ({ children }: MDXProps) => (
+  <Article meta={meta}>{children}</Article>
+);
+export default Test;

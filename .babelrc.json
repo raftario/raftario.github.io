@@ -1,0 +1,12 @@
+{
+  "presets": [
+    [
+      "next/babel",
+      {
+        "preset-env": {
+          "targets": "Chrome >= 51, Firefox >= 54, Safari >= 12, Edge >= 15, Android >= 81, iOS >= 10"
+        }
+      }
+    ]
+  ]
+}
