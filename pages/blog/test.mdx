@@ -139,21 +139,21 @@ Ad amet irure est magna id mollit Lorem in do duis enim. Excepteur velit nisi ma
 
 Et fugiat ad nisi amet magna labore do cillum fugiat occaecat cillum Lorem proident. In sint dolor ullamco ad do adipisicing amet id excepteur Lorem aliquip sit irure veniam laborum duis cillum. Aliqua occaecat minim cillum deserunt magna sunt laboris do do irure ea nostrud consequat ut voluptate ex.
 
-```go
-package main
+```rust
+use warp::{Filter, Reply};
 
-import (
-    "fmt"
-    "net/http"
-)
-
-func handler(w http.ResponseWriter, r *http.Request) {
-    fmt.Fprintf(w, "Hi there, I love %s!", r.URL.Path[1:])
+fn hello(name: String) -> impl Reply {
+    format!("Hello, {}!", name)
 }
 
-func main() {
-    http.HandleFunc("/", handler)
-    http.ListenAndServe(":8080", nil)
+#[tokio::main]
+async fn main() {
+    let hello = warp::path!("hello" / String)
+        .map(hello);
+
+    warp::serve(hello)
+        .run(([127, 0, 0, 1], 3030))
+        .await;
 }
 ```
 

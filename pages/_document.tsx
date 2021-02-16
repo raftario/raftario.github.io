@@ -5,7 +5,7 @@ class D extends Document {
     return (
       <Html>
         <Head />
-        <body className="bg-base3 text-base00 font-body text-base">
+        <body className="bg-base3 text-base00 font-body text-base leading-relaxed break-words">
           <Main />
           <NextScript />
         </body>

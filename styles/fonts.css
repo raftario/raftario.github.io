@@ -20,3 +20,11 @@
   font-display: swap;
   src: local("Raleway"), url("/fonts/raleway-500.woff2") format("woff2");
 }
+
+@font-face {
+  font-family: "raftariosevka";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local("raftariosevka"), url("/fonts/raftariosevka.woff2") format("woff2");
+}

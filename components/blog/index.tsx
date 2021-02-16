@@ -58,7 +58,7 @@ const Article = ({
         </p>
       </div>
     </header>
-    <main className="max-w-screen-sm mx-auto leading-relaxed break-words px-2 sm:px-0 my-12">
+    <main className="max-w-screen-sm mx-auto px-2 sm:px-0 my-12">
       {children}
     </main>
   </>

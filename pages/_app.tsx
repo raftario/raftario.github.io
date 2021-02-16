@@ -35,6 +35,8 @@ const components: MDXProviderComponents = {
   ol: List.OL,
   hr: HR,
   inlineCode: Code.InlineCode,
+  code: Code.CodeBlock,
+  pre: Code.CodeContainer,
 };
 
 const App = ({ Component, pageProps }: AppProps) => (
