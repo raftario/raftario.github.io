@@ -1,5 +1,5 @@
 module.exports = {
-  purge: ["./pages/**/*.{ts,tsx,md,mdx}", "./components/**/*.{ts,tsx,md,mdx}"],
+  purge: ["./pages/**/*.{tsx,mdx}", "./components/**/*.tsx"],
   darkMode: false,
   theme: {
     fontFamily: {
@@ -56,6 +56,11 @@ module.exports = {
       blue: "#268bd2",
       cyan: "#2aa198",
       green: "#859900",
+    },
+  },
+  variants: {
+    extend: {
+      textColor: ["active", "visited"],
     },
   },
 };

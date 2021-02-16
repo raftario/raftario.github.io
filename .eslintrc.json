@@ -14,5 +14,21 @@
     "@typescript-eslint/explicit-module-boundary-types": 0,
     "react/react-in-jsx-scope": 0,
     "unicorn/prevent-abbreviations": 0
-  }
+  },
+  "overrides": [
+    {
+      "files": ["*.js"],
+      "env": { "node": true },
+      "rules": {
+        "@typescript-eslint/no-var-requires": 0
+      }
+    },
+    {
+      "files": ["*.mdx"],
+      "rules": {
+        "react/display-name": 0,
+        "react/prop-types": 0
+      }
+    }
+  ]
 }

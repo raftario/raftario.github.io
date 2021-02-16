@@ -13,9 +13,10 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
+    "noImplicitAny": false,
     "baseUrl": ".",
     "paths": {
-      "blog/*": ["components/blog/*"]
+      "blog": ["components/blog/index"]
     }
   },
   "include": ["next-env.d.ts", "mdx.d.ts", "**/*.ts", "**/*.tsx", "**/*.mdx"],
