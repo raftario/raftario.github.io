@@ -1,0 +1,165 @@
+import Article from "blog";
+
+export const meta = {
+  title: "Rust is colourful",
+  description: "Something something orange website",
+  published: new Date("2021-03-12"),
+};
+
+Oh boy. Once again we have been able to observe the natural phenomenon of the orange website getting some blog post on its front page and spawning sprawling pages of stupid nonsense in the comments. If you don't know what I'm referring to here, good on you. Don't look into it too much. Like, really, don't. Oh and since this is the part where I make angry references to current internet events, no, fuck off, I will not write simply. Anyway.
+
+I believe the [original blog post](https://theta.eu.org/2021/03/08/async-rust-2.html) was genuinely not ill-intended. It makes valid points, but also ignores some important information and justifications and doesn't mention the existing solutions to the issues it exposes. Here, I'll try my best to fill in those gaps and explain why these problems exist, and why they should.
+
+---
+
+## Zero-cost abstractions
+
+If Rust had to be described by a single philosophy, it would be zero-cost abstractions. After all, the big selling point of the language is memory safety without garbage collection, which is, surprise surprise, a zero-cost abstraction.
+
+Every programming language is full of abstractions. That's the whole point of programming languages. Various abstractions have various costs, which is the overhead of using the abstraction compared to writing the logic behind it by hand.
+
+For instance, garbage collection has a cost; the program needs to pause every so often at runtime to look for things that aren't used anymore and free the memory they're using, compared to freeing things manually when they stop being used. In contrast, Rust's memory safety is enforced at compile time. Things get freed as soon as they stop being used, there's no pausing, it's just like doing it by hand. A zero-cost abstraction.
+
+The main drawback of zero-cost abstractions is that while they're still abstractions, they're usually more complex to use than higher level, more costly ones. Rust is kind of infamous for having a steep learning curve. That's because enforcing memory safety at compile time requires a complex type system, and novel, also complex semantics. You could say zero-cost abstractions aren't really zero-cost, you just pay the price differently.
+
+## Colourful closures
+
+The first class function story in Rust isn't particularly great. The original blog post paints it as a design flaw of the language. The thing is, first class functions as seen in other languages are not a zero-cost abstraction. The design flaw is in fact just a necessary sacrifice to follow the language's main philosophy. Let's use the example from the blog post.
+
+```rust
+use std::thread;
+
+/// Does some strenuous work "asynchronously", and calls `func` with the
+/// result of the work when done.
+fn do_work_and_then(func: fn(i32)) {
+    thread::spawn(move || {
+        // Figuring out the meaning of life...
+        thread::sleep_ms(1000); // gee, this takes time to do...
+        // ah, that's it!
+        let result: i32 = 42;
+        // let's call the `func` and tell it the good news...
+        func(result)
+    });
+}
+
+struct Database {
+    data: Vec<i32>
+}
+impl Database {
+    fn store(&mut self, data: i32) {
+        self.data.push(data);
+    }
+}
+
+fn main() {
+    let mut db = Database { data: vec![] };
+    do_work_and_then(|meaning_of_life| {
+        println!("oh man, I found it: {}", meaning_of_life);
+        db.store(meaning_of_life);
+    });
+    // I'd read from `db` here if I really were making a web server.
+    // But that's beside the point, so I'm not going to.
+    // (also `db` would have to be wrapped in an `Arc<Mutex<T>>`)
+    thread::sleep_ms(2000);
+}
+```
+
+This does not compile, because `fn` is a function pointer, but the closure passed to `do_work_and_then` cannot be represented by a simple function pointer, because it captures data from its surrounding scope. Using code from the original post again, writing this closure manually would give something like this.
+
+```rust
+struct Closure<'a> {
+    data: &'a mut Database,
+    func: fn(i32, &mut Database)
+}
+
+impl<'a> Closure<'a> {
+    fn call(&mut self, arg: i32) {
+        (self.func)(arg, self.data)
+    }
+}
+```
+
+rustc generates code that looks somewhat like this for us each time we write a closure, which means every closure has its own unique, anonymous type. _Why can't we have a one size fits all type for first class functions_ you ask ? Well, lets see how that could work.
+
+Looking at the above code, we can see our closure type takes a generic type parameter (the `'a` lifetime). The more data a closure captures, the more lifetime parameters its type will get. The size of that type will also be different for different types of data (two `&mut Database`s take more space than one). _But we can work around that_ you say. Indeed we can.
+
+The solution is using a pointer, a size, and a vtable. Just allocate and store the closure on the heap, store the pointer to it, its size and a vtable with all the necessary stuff to call it. That way all closures end up the same size and type. But the lifetime parameter is still an issue. I guess we could use reference counting to get rid of that. Yep, that would work out. Haha fuck yeah!!! Yes!!
+
+Let's just proof read that. I don't know about you, but it doesn't sound very zero-cost to me. Well this fucking sucks. What the fuck.
+
+The hard truth is you can't have zero-cost first class functions. You either use the (relatively) costly memory allocation and dynamic dispatch that we just described. Or you use generics and monomorphisation to get something somewhat comparable that is also zero-cost. That's what Rust chose to do. And it was a conscious choice, not a design mistake.
+
+But guess what ? Rust also has heap allocations. And dynamic dispatch. And reference counting. There's nothing stopping anyone from implementing what we just went over, and it's actually pretty easy to do.
+
+```rust
+use std::sync::{Arc, Mutex};
+use std::thread;
+
+// Let's use a heap allocated box and use dynamic dispatch on the Fn trait
+// We also need to specify Send as the closure will be sent to another thread
+fn do_work_and_then(func: Box<dyn Fn(i32) + Send>) {
+    thread::spawn(move || {
+        thread::sleep_ms(1000);
+        let result: i32 = 42;
+        func(result)
+    });
+}
+
+struct Database {
+    data: Vec<i32>
+}
+impl Database {
+    fn store(&mut self, data: i32) {
+        self.data.push(data);
+    }
+}
+
+fn main() {
+    // Reference counting to eliminate the generic lifetime and a mutex to avoid race conditions
+    let db = Arc::new(Mutex::new(Database { data: vec![] }));
+    // Let's get a new reference to our database for use in the callback
+    let closure_db = db.clone();
+    // Our closure needs to be boxed as the function expects it to be
+    // `move` lets us take ownership of `closure_db` and avoid the whole lifetime story
+    do_work_and_then(Box::new(move |meaning_of_life| {
+        println!("oh man, I found it: {}", meaning_of_life);
+        closure_db.lock().unwrap().store(meaning_of_life);
+    }));
+    // ...
+    thread::sleep_ms(2000);
+}
+```
+
+Is it more verbose than other languages ? Yes. Is it worth the verbosity to have zero-cost closures in a language built around zero-cost abstractions ? Also yes. Again, conscious choice, not design mistake.
+
+## "Radioactive types"
+
+That's the only genuinely bad part in the original post, in my opinion.
+
+> Because of ownership and lifetimes, having pieces of data that hold references to other pieces of data becomes a bit of a problem.
+
+No, it doesn't. The compiler just ensures that no pieces of data that don't exist anymore are being used in a conservative way. While that renders some common patterns from other languages unusable, it is still desirable. Some people will even say it probably means those patterns aren't very good in the first place. Of course, I would never say such a thing. Never.
+
+> but attempting to make them long-lived is usually a bit of an issue (requiring advanced tricks such as the `Pin<T>` type which didn’t even exist until a few Rust versions ago)
+
+No, it's not. Rust has a plethora of smart pointers designed exactly for that usecase (`Box`, `Arc` & friends), and has had them for a long time. While `Pin` can be quite confusing at first (maybe I'll write about `Pin`, one day), it has nothing to do with making values long-lived.
+
+> Generally Rust doesn’t really like it when you use radioactive types for too long – they make the borrow checker uneasy, because you’re borrowing something for an extended period of time.
+
+If the borrow checker complains, it means it cannot prove that whatever is being referenced still exists. Again, requires more verbosity, but also the language's selling point.
+
+## Colourful futures
+
+`async` blocks and functions work in a fashion similar to closures. The compiler creates a unique, anonymous type implementing the `Future` trait for each of them, so all of the things that have already been said still apply. And the same conclusion can be made; the way futures are implemented in Rust is not a rushed design decision. There have been hundreds and hundreds of comments on RFCs over many years, and the current implementation is the result of those discussions.
+
+The answer to "What about X" is that X has already been considered. It has been discussed to death. And X just doesn't work for Rust. And people involved in the design and implementation are not really patient about X anymore, cause, well, it's been discussed to death. So when some uninformed commenters on the orange website (not talking about the blog post author here) say that X would have worked better and shit on the work of people who made the conscious, well-informed decision to go with something else, those people get rightfully pissed. Now I will stop referencing those events, for real this time.
+
+About "fundamentally unavoidable" problems. Well, most of them are not. As time passes and the language evolves, more and more of those problems will become trivial to avoid. `async_trait` is just syntactic sugar for the dynamic dispatch used earlier to fix naming issues (I might write about it more in depth at some point). It's currently needed because trait methods have to return a named type. However, this problem will vanish once generic associated types (GATs) are available. The same goes for a lot of other things.
+
+All in all, I think that yes, it had to end this way. I'm glad Rust doesn't decide to spin up a bunch of OS threads for me. I'm glad it doesn't choose to use dynamic dispatch for me. I'm glad it lets me use closures and futures without an allocator. I'm glad Rust did things in a rusty, verbose, colourful way.
+
+---
+
+You can find me on Twitter ([@raftario](https://twitter.com/raftario)) if you have any feedback, corrections, comments or insults :)
+
+export default ({ children }) => <Article meta={meta}>{children}</Article>;
