@@ -30,7 +30,7 @@
   "devDependencies": {
     "@types/mdx-js__react": "^1.5.3",
     "@types/node": "*",
-    "@types/react": "^17.0.2",
+    "@types/react": "^17.0.8",
     "@typescript-eslint/eslint-plugin": "^4.15.0",
     "@typescript-eslint/parser": "^4.15.0",
     "eslint": "^7.19.0",
