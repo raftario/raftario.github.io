@@ -1,0 +1,13 @@
+{
+  "name": "@raftario/highlight",
+  "version": "0.1.0",
+  "private": true,
+  "main": "index.node",
+  "types": "index.d.ts",
+  "scripts": {
+    "build": "cargo-cp-artifact -ac highlight index.node -- cargo build --message-format=json-render-diagnostics"
+  },
+  "devDependencies": {
+    "cargo-cp-artifact": "^0.1.8"
+  }
+}

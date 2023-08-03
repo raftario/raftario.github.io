@@ -1,0 +1,54 @@
+{
+  "name": "raftar.io",
+  "private": true,
+  "packageManager": "yarn@4.0.0-rc.48",
+  "workspaces": [
+    "highlight"
+  ],
+  "scripts": {
+    "dev": "next dev",
+    "build": "yarn workspace @raftario/highlight build && next build",
+    "start": "serve out",
+    "lint": "cargo fmt --check --all && cargo clippy --all && prettier --check . && next lint",
+    "vscode": "yarn dlx @yarnpkg/sdks vscode"
+  },
+  "dependencies": {
+    "@raftario/highlight": "workspace:^",
+    "gray-matter": "^4.0.3",
+    "next": "^13.4.12",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-markdown": "^8.0.7",
+    "rehype-slug": "^5.1.0",
+    "remark-gfm": "^3.0.1",
+    "remark-toc": "^8.0.1",
+    "sass": "^1.64.2",
+    "zod": "^3.21.4"
+  },
+  "devDependencies": {
+    "@types/node": "^18.17.1",
+    "@types/react": "^18.2.18",
+    "@types/react-dom": "^18.2.7",
+    "@typescript-eslint/eslint-plugin": "^6.2.1",
+    "@typescript-eslint/parser": "^6.2.1",
+    "eslint": "^8.46.0",
+    "eslint-config-next": "^13.4.12",
+    "eslint-config-prettier": "^8.9.0",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
+    "eslint-plugin-unicorn": "^48.0.1",
+    "prettier": "^3.0.0",
+    "serve": "^14.2.0",
+    "typescript": "^5.1.6"
+  },
+  "dependenciesMeta": {
+    "next": {
+      "unplugged": true
+    },
+    "prettier": {
+      "unplugged": true
+    }
+  },
+  "resolutions": {
+    "eslint-config-next/@typescript-eslint/parser": "^6"
+  }
+}

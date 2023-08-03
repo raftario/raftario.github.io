@@ -1,0 +1,18 @@
+# dependencies
+/.yarn/*
+/.pnp.*
+
+# next.js
+/.next/
+/out/
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# rust
+/target/
+*.node
+
+# vscode
+/.vscode/

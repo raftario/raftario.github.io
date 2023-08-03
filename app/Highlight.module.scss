@@ -1,0 +1,41 @@
+@import "palette";
+
+.code {
+  .comment {
+    color: $light4;
+  }
+
+  .keyword {
+    color: $bright_blue;
+  }
+  .punctuation {
+    color: $light3;
+  }
+  .operator {
+    color: $light2;
+  }
+  .embedded {
+    color: $light1;
+  }
+
+  .string {
+    color: $bright_green;
+  }
+  .number,
+  .boolean,
+  .constant {
+    color: $bright_purple;
+  }
+
+  .type {
+    color: $bright_aqua;
+  }
+
+  .function {
+    color: $bright_yellow;
+
+    &.macro {
+      color: $bright_orange;
+    }
+  }
+}

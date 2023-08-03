@@ -1,0 +1,116 @@
+@import "palette";
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+
+  background-color: $light0_hard;
+  color: $dark0;
+  font-family: var(--font-montserrat);
+  font-size: 18px;
+  line-height: 140%;
+}
+
+::selection {
+  background-color: $faded_blue;
+  color: $light0_hard;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: $dark0;
+  font-family: var(--font-iosevka-aile);
+  line-height: 140%;
+}
+
+h6 {
+  font-size: 20px;
+}
+h5 {
+  font-size: 22px;
+}
+h4 {
+  font-size: 24px;
+}
+h3 {
+  font-size: 26px;
+}
+h2 {
+  font-size: 28px;
+}
+h1 {
+  font-size: 32px;
+}
+
+a {
+  color: $faded_blue;
+}
+
+table,
+td,
+th {
+  border-collapse: collapse;
+  border: 2px solid $light4;
+}
+
+td,
+th {
+  padding: 4px 8px;
+}
+
+th {
+  background-color: $light0_soft;
+  font-weight: normal;
+}
+
+code,
+pre {
+  font-family: var(--font-iosevka);
+}
+
+code {
+  background-color: $light0_soft;
+  padding: 0px 4px;
+}
+
+pre {
+  background-color: $dark0_soft;
+  color: $light1;
+  overflow-x: auto;
+}
+
+@media only screen and (min-width: 720px) {
+  html,
+  body {
+    font-size: 21px;
+  }
+
+  h6 {
+    font-size: 24px;
+  }
+  h5 {
+    font-size: 27px;
+  }
+  h4 {
+    font-size: 30px;
+  }
+  h3 {
+    font-size: 33px;
+  }
+  h2 {
+    font-size: 36px;
+  }
+  h1 {
+    font-size: 42px;
+  }
+}

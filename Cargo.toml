@@ -1,0 +1,6 @@
+[workspace]
+members = ["highlight"]
+
+[profile.release]
+opt-level = "z"
+lto = true

@@ -1,0 +1,74 @@
+@import "palette";
+
+.md {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 1em 0 0.5em 0;
+    text-transform: lowercase;
+
+    a {
+      color: $dark0;
+      text-decoration: none;
+      position: relative;
+      pointer-events: none;
+
+      &::before {
+        content: "#";
+        position: absolute;
+        left: -1em;
+        font-size: 18px;
+        color: transparent;
+        pointer-events: auto;
+      }
+
+      @media only screen and (min-width: 720px) {
+        &::before {
+          font-size: 21px;
+        }
+      }
+    }
+
+    @media (pointer: none), (pointer: coarse) {
+      a {
+        pointer-events: auto;
+      }
+    }
+
+    &:hover {
+      a::before {
+        color: $dark4;
+      }
+    }
+  }
+
+  p {
+    margin: 1em 0;
+  }
+
+  pre,
+  blockquote,
+  table {
+    margin: 1em 8px;
+  }
+
+  @media only screen and (min-width: 720px) {
+    pre,
+    blockquote,
+    table {
+      margin: 1em 16px;
+    }
+  }
+
+  pre {
+    padding: 0 16px;
+
+    pre {
+      margin: 0;
+      padding: 1em 0;
+    }
+  }
+}

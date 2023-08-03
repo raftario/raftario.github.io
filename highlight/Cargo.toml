@@ -1,0 +1,18 @@
+[package]
+name = "highlight"
+version = "0.0.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+neon = { version = "1.0.0-alpha.4", default-features = false, features = [
+    "napi-6",
+] }
+tree-sitter-c = "0.20.4"
+tree-sitter-highlight = "0.20.1"
+tree-sitter-javascript = "0.20.0"
+tree-sitter-rust = "0.20.3"
+tree-sitter-typescript = "0.20.2"
+tree-sitter-x86asm = { git = "https://github.com/bearcove/tree-sitter-x86asm" }
