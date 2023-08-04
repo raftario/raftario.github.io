@@ -1,4 +1,4 @@
-@import "palette";
+@import "../../palette";
 
 .md {
   h1,
@@ -64,11 +64,28 @@
   }
 
   pre {
+    position: relative;
     padding: 0 16px;
 
     pre {
       margin: 0;
       padding: 1em 0;
+    }
+
+    .copy {
+      position: absolute;
+      bottom: 8px;
+      right: 8px;
+      padding: 2px 4px;
+
+      background-color: $light0_hard;
+      color: $dark0;
+      opacity: 0.5;
+
+      cursor: pointer;
+      &:hover {
+        opacity: 1;
+      }
     }
   }
 }

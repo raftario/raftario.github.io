@@ -1,3 +1,5 @@
+import ClickCopy from "@/app/components/util/ClickCopy"
+
 import styles from "./page.module.scss"
 
 const SPECIAL: Record<number, string> = {
@@ -66,8 +68,12 @@ export default function Ascii() {
             {chunk.map((row, i) => (
               <tr key={i} className={styles.row}>
                 <td>{row.dec}</td>
-                <td>{row.hex}</td>
-                <td>{row.bin}</td>
+                <ClickCopy>
+                  <td>{row.hex}</td>
+                </ClickCopy>
+                <ClickCopy>
+                  <td>{row.bin}</td>
+                </ClickCopy>
                 <td>{row.char}</td>
               </tr>
             ))}

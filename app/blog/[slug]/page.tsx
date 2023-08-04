@@ -1,4 +1,5 @@
-import Markdown from "../../Markdown"
+import Markdown from "@/app/components/markdown/Markdown"
+
 import styles from "./page.module.scss"
 import { getPost, getPosts } from "./util"
 

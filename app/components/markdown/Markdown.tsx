@@ -6,6 +6,7 @@ import rehypeSlug from "rehype-slug"
 import remarkGfm from "remark-gfm"
 import remarkToc from "remark-toc"
 
+import ClickCopy from "../util/ClickCopy"
 import Highlight from "./Highlight"
 import styles from "./Markdown.module.scss"
 
@@ -56,7 +57,12 @@ export default function Markdown({ children, toc }: Props) {
           const src = Array.isArray(children) ? children.join("") : children
 
           return !inline && lang ? (
-            <Highlight src={src} lang={lang} />
+            <>
+              <Highlight src={src} lang={lang} />
+              <ClickCopy text={src} title={false}>
+                <span className={styles.copy}>copy</span>
+              </ClickCopy>
+            </>
           ) : (
             <code className={className} {...props}>
               {children}

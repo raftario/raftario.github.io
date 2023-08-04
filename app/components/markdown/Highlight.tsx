@@ -21,12 +21,17 @@ interface Props {
   src: string
   lang: string
 }
-export default function Highlight({ src, lang }: Props) {
+export default function Highlight({
+  src,
+  lang,
+  children,
+}: React.PropsWithChildren<Props>) {
   return (
     <pre className={styles.code}>
       {highlight(src, lang).map((item, i) =>
         typeof item === "string" ? item : <Inner key={i} highlight={item} />,
       )}
+      {children}
     </pre>
   )
 }
